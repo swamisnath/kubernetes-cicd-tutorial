@@ -51,8 +51,17 @@ jobs:
           # Commit changes
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add deployment.yaml
-          git commit -m "Update image to ${{ github.sha }}"
+          #git add deployment.yaml
+          #git commit -m "Update image to ${{ github.sha }}"
           
           # Push
-          git push -f https://${GIT_TOKEN}@github.com/swamisnath/grade-api-gitops.git main
+          #git push -f https://${GIT_TOKEN}@github.com/swamisnath/grade-api-gitops.git main
+
+          git add deployment.yaml
+          if ! git diff --cached --quiet; then
+            git commit -m "Update image to ${{ github.sha }}"
+            git push https://${GIT_TOKEN}@github.com/swamisnath/grade-api-gitops.git main
+          else
+            echo "Image already set to ${{ github.sha }}"
+          fi
+          
