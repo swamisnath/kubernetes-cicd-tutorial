@@ -33,7 +33,7 @@ app.listen(port, () => {
 //  First, install the dependencies listed in package.json:
 //   npm install
 //
-// Then, start the API server with:
+// Then, start the API server with...:
 //   node app.js
 //
 
